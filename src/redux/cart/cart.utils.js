@@ -17,3 +17,7 @@ export const addToCartExisting = (cartItems, addItemToCart) => {
 export const cartQuantity = (cartItems) => {
     return cartItems.reduce((accumulator, cartItem) => accumulator = accumulator + cartItem.quantity)
 }
+
+export const removeItemFromCart = (cartItems, item) => {
+    return cartItems.filter(cartItem => cartItem.id !== item.id)    
+}
