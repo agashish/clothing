@@ -29,7 +29,7 @@ export const removeItem = (cartItems, item) => {
 
     return cartItems.map(
         cartItem => cartItem.id === item.id
-        ? {...cartItem, quantity: cartItem.quantity--}
+        ? {...cartItem, quantity: cartItem.quantity - 1}
         : cartItem
     )
 }
