@@ -34,6 +34,8 @@ const CheckoutPage = ({cartItems, total}) => {
                 :
                 <span>Your cart is empty</span>
             }
+
+            
     
             <div className="total">TOTAL: ${total}</div>
             <div className="test-warning">
