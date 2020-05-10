@@ -7,10 +7,7 @@ import {directorySections} from './../../redux/directory/directory.selectors';
 import MenuItem from './../menu-item/menu-item.components';
 
 class DirectoryMenu extends React.Component {
-    constructor() {
-        super();
-    }
-
+  
     render() {
         const sections = this.props.sections;
         return (
