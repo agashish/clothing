@@ -10,8 +10,7 @@ const WithSpinner = WrappedComponent => {
             </SpinnerOverlay>  
             : <WrappedComponent {...otherProps} />;
     }
-
     return Spinner;
 }
 
-export default WithSpinner;
+export default WithSpinner; 

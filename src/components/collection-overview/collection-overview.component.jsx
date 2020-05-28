@@ -8,7 +8,6 @@ import CollectionPreview from './../../components/collection-preview/collection-
 import './collection-overview.styles.scss';
 
 const CollectionOverview = ({collections}) => {
-    console.log(collections)
     return (
         <div className="collection-overview">
         {

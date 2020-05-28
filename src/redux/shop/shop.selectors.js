@@ -9,11 +9,10 @@ export const collectionsData = createSelector(
 
 export const selectCollectionsForPreview = createSelector(
     [collectionsData],
-    (collections) => Object.keys(collections).map(
-        key => collections[key]
-    )
+    (collections) => 
+    collections ? Object.keys(collections).map(key => collections[key]) : []
 )
-
+ 
 // export const selectCollection = shopUrlParam => {
 //     return createSelector(
 //         [collectionsData],
@@ -34,5 +33,22 @@ export const selectCollectionsForPreview = createSelector(
 export const selectCollection = shopUrlParam =>
     createSelector(
         [collectionsData],
-        (collections) => collections[shopUrlParam]
+        (collections) => collections ? collections[shopUrlParam] : null
     )
+
+export const showLoading = createSelector(
+    [collectionState],
+    (shop) => shop.isFetching
+)   
+
+// #### PASS NULL TO COMPONENT
+export const isCollectionLoaded = createSelector(
+    [collectionState],
+    (shop) => !!shop.collections
+) 
+
+// #### PASS BOOLEAN TO COMPONENT
+// export const isCollectionLoaded = createSelector(
+//     [collectionState],
+//     (shop) => !!shop.collections
+// ) 

@@ -6,7 +6,7 @@ import './header.styles.scss';
 import {connect} from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import CartIcon from './../cart-icon/cart-icon.components';
-import CartDropdown from './../cart-dropdown/cart-dropdown.component';
+import CartDropdownContainer from './../cart-dropdown/cart-dropdown.container';
 import {selectCurrentUser} from '../../redux/user/user.selectors';
 import {selectCartHidden} from './../../redux/cart/cart.selectors';
 
@@ -48,11 +48,12 @@ const Header = ({currentUser, hidden}) => {
                 
                 <CartIcon />
             </div>
-            {
+            {/* {
                 !hidden ? 
                     <CartDropdown />
                 : null    
-            }
+            } */}
+            <CartDropdownContainer />
         </div>   
     )
 }

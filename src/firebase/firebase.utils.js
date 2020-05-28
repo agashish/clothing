@@ -44,6 +44,23 @@ const config = {
   return userRef;
   }
 
+  export const convertCollectionsToMap = (collections) => {
+    const transformedCollection = collections.docs.map(collection => {
+      const {title, items} = collection.data();
+      return {
+        id: collection.id,
+        items,
+        title,
+        routeName: encodeURI(title.toLowerCase()),
+      }      
+    })
+
+    return transformedCollection.reduce((accumulate, collection) => {      
+      accumulate[collection.title.toLowerCase()] = collection;
+      return accumulate;
+    }, {});
+  }
+
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({prompt: "select_account"})
 

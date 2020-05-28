@@ -9,20 +9,26 @@ import CollectionItem from './../collection-item/collection-item.component';
 const CategoryPage = ({match, category}) => {
     console.log(match.params.categoryId);
     console.log(category);
-    const {title, items} = category;
-    return (
-        <div className="category-page">
-            <h2 className="title">{title}</h2>
+
+    const isData = category ? <div>
+        <h2 className="title">{category.title}</h2>
             <div className="items">
             {
-               items.length ?
-                    items.map(
+               category.items.length ?
+               category.items.map(
                         item => <CollectionItem key={item.id} item={item} />
                     )
                 : <span>No Category items found</span>    
             }
             </div>
-        </div>
+    </div>
+    : <div>No category found</div>
+
+    //const {title, items} = category;    
+    return (
+        <div className="category-page">
+            {isData}
+        </div> 
     )
 }
 
