@@ -52,3 +52,8 @@ export const isCollectionLoaded = createSelector(
 //     [collectionState],
 //     (shop) => !!shop.collections
 // ) 
+
+export const increment = createSelector(
+    [collectionState],
+    shop => shop.increment
+)

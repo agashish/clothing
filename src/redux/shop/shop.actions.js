@@ -15,6 +15,10 @@ export const fecthCollectionsFailure = (errorMessage) => ({
     payload: errorMessage
 })
 
+export const setIncrement = () => ({
+    type: shopTypes.INCREMENT
+})
+
 // EVERY FUNCTIONS ARE, IS AN ACTION CREATOR WHICH RETURNS A FUNCTION THATS GET OWN DISPATCHER LIKE AS mapDispatchToProps
 export const fetchCollectionStartAsync = () => {
     return (dispatch) => {

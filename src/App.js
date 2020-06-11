@@ -5,7 +5,7 @@ import ShopPage from './pages/shop/shop.component';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
-import {setCurrentUser} from './redux/user/user.action';
+import {setCurrentUser, checkUserSession} from './redux/user/user.action';
 import {selectCurrentUser} from './redux/user/user.selectors';
 
 import './App.css';
@@ -19,22 +19,25 @@ import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 class App extends React.Component { 
   unSubscribeFromAuth = null;
   componentDidMount() {
-    const {setCurrentUser} = this.props;
-    this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if(userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+    const {setCurrentUser, checkUserSession} = this.props;
+    checkUserSession();
 
-        // #### NOW ADD THE OPEN SUBSCRIBER
-        userRef.onSnapshot(snapShot => {
-        setCurrentUser({
-              id: snapShot.id,
-            ...snapShot.data()
-          })           
-        })
-      } else {  
-        setCurrentUser(userAuth) 
-      }
-    })
+    // this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+    //   if(userAuth) {
+    //     const userRef = await createUserProfileDocument(userAuth);
+
+    //     // #### NOW ADD THE OPEN SUBSCRIBER
+    //     userRef.onSnapshot(snapShot => {
+    //     setCurrentUser({
+    //           id: snapShot.id,
+    //         ...snapShot.data()
+    //       })           
+    //     })
+    //   } else {  
+    //     setCurrentUser(userAuth) 
+    //   }
+    // })
+    
   } 
 
   render() {
@@ -63,7 +66,8 @@ const mapStateToProps = createStructuredSelector({
 })
 
 const mapDispatchToProps = dispatch => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user))
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  checkUserSession: () => dispatch(checkUserSession())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

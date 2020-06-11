@@ -61,9 +61,30 @@ const config = {
     }, {});
   }
 
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({prompt: "select_account"})
+  export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unSubscribe = auth.onAuthStateChanged(userAuth => {
+        unSubscribe();
+        resolve(userAuth);
+      }, reject);
+    })
+  }
 
-  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  export const signOutFirebase = () => {
+    return new Promise((resolve, reject) => {
+      try {
+        resolve(auth.signOut())
+        console.log('logout')
+      } catch(error) {
+        reject(error)
+        console.log('logout error')
+      }
+    })
+  }
+
+  export const googleProvider = new firebase.auth.GoogleAuthProvider();
+  googleProvider.setCustomParameters({prompt: "select_account"})
+
+  export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
   export default firebase; 
