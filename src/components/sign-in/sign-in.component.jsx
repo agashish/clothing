@@ -4,7 +4,9 @@ import FormInput from './../form-input/form-input.component';
 import CustomButton from './../custom-button/custom-button.component';
 import {signInWithGoogle, auth} from './../../firebase/firebase.utils';
 import {googleSignInStart, emailSignInStart} from './../../redux/user/user.action';
-import './sign-in.styles.scss';
+// import './sign-in.styles.scss';
+
+import {SignUp} from './sign-in.styles';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -46,7 +48,7 @@ class SignIn extends React.Component {
     render() {
         const {googleSignInStart} =  this.props;
         return (
-            <div className="sign-in">
+            <SignUp>
                 <h2>I already have an account</h2>
                 <span>Sign in with your email and password</span>
 
@@ -77,7 +79,7 @@ class SignIn extends React.Component {
                         <CustomButton type="button" onClick={googleSignInStart} isGoogleSignIn>Sign in with Google</CustomButton>
                     </div>
                 </form>
-            </div>
+            </SignUp>
         )
     }
 }
