@@ -15,7 +15,7 @@ export function* fetchCollectionsAsync() {
 }
 
 export function* fetchCollectionsStart() {
-    yield takeEvery(
+    yield takeLatest(
         shopTypes.FETCH_COLLECTIONS_START,
         fetchCollectionsAsync
     )    
